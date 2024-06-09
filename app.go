@@ -10,6 +10,8 @@ import (
 	"strings"
 	"fmt"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
+
+	"Cogito-Ergo-Vet/internal/update"
 )
 
 // App struct
@@ -38,6 +40,11 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
+}
+
+func (a *App) domReady(ctx context.Context) {
+	runtime.LogInfo(a.ctx, "Checking Updates...")
+	a.UpdateCheckUI()
 }
 
 // Greet returns a greeting for the given name
@@ -122,7 +129,7 @@ func (a *App) ExportDataToCSV(data []EntryCount, filename string) error {
 
 	for _, entry := range data {
 		fmt.Printf("Row: %s,%d\n", entry.Entry, entry.Count)
-		row := []string{string(entry.Entry), fmt.Sprintf("%d", entry.Count)} // Explicitly convert Entry to string
+		row := []string{string(entry.Entry), fmt.Sprintf("%d", entry.Count)}
 		err = writer.Write(row)
 		if err!= nil {
 			return fmt.Errorf("failed to write row: %w", err)
@@ -136,4 +143,35 @@ func (a *App) ExportDataToCSV(data []EntryCount, filename string) error {
 func (a *App) SelectExport() (string, error) {
 	file, err := runtime.SaveFileDialog(a.ctx, runtime.SaveDialogOptions{Title: "Seleziona il file CSV per esportare", DefaultFilename: "data.csv", Filters: []runtime.FileFilter{{DisplayName: "File CSV (*.csv)", Pattern: "*.csv"}}})
 	return file, err
+}
+
+func (a *App) UpdateCheckUI() {
+	shouldUpdate, latestVersion, currentVersion := update.CheckUpdate()
+	if shouldUpdate {
+		updateMessage := fmt.Sprintf("Nuova versione disponibile\nVorresti aggiornare da v%s a v%s?", currentVersion, latestVersion)
+		buttons := []string{"Yes", "No"}
+		dialogOpts := runtime.MessageDialogOptions{Title: "Aggiornamento Disponibile", Message: updateMessage, Type: runtime.QuestionDialog, Buttons: buttons, DefaultButton: "Sì", CancelButton: "No"}
+		action, err := runtime.MessageDialog(a.ctx, dialogOpts)
+		if err != nil {
+			fmt.Println("Error:", err)
+		}
+		// runtime.LogInfo(a.ctx, action)
+		if action == "Yes" {
+			// runtime.LogInfo(a.ctx, "Update clicked")
+			updated := update.DoSelfUpdate()
+			if updated {
+				buttons = []string{"Ok"}
+				dialogOpts = runtime.MessageDialogOptions{Title: "Aggiornamento Completato", Message: "Aggiornamento completato\nRiavvia l'app per applicare le modifiche", Type: runtime.InfoDialog, Buttons: buttons, DefaultButton: "Ok"}
+				runtime.MessageDialog(a.ctx, dialogOpts)
+			} else {
+				buttons = []string{"Ok"}
+				dialogOpts = runtime.MessageDialogOptions{Title: "Aggiornamento Fallito", Message: "Aggiornamento fallito\nAggiornare automaticamente da GitHub:\nhttps://github.com/GPGamer98/Repetition-Checker", Type: runtime.InfoDialog, Buttons: buttons, DefaultButton: "Ok"}
+				runtime.MessageDialog(a.ctx, dialogOpts)
+			}
+		}
+	}
+}
+
+func (a *App) GetCurrentVersion() string {
+	return update.Version
 }
