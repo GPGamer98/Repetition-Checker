@@ -12,6 +12,7 @@
     }
 
     let file: string = ""
+    let counted = false
     let countResult: EntryCount[];
 
     let fileName: string = ""
@@ -26,6 +27,9 @@
         if (file !== "") {
             try {
                 countResult = await AnalyzeCSVFiles(file);
+                if (countResult) {
+                    counted = true
+                }
                 console.log(countResult); // Or further processing/display logic
             } catch (error) {
                 console.error("Error:", error);
@@ -53,7 +57,10 @@
 </div>
 
 <div class="count-div"><button class="count" on:click={analyze}>Conta</button></div>
-{#if countResult}
+{#if counted}
+    <div class="close-wr">
+        <div class="close-cont"><button class="close-btn" on:click={() => counted = false}>Cancella</button></div>
+    </div>
     <div class="table-container">
         <table>
             <tr>
@@ -68,11 +75,14 @@
             {/each}
         </table>
     </div>
-    <div class="export">
-        <div class="export-btn">
-            <button class="export-button" on:click={exportData}><span class="material-symbols-outlined">
-                download
-                </span>Esporta CSV</button>
+    <div class="export-cont">
+        <div class="export">
+            <div class="warning">Attenzione! Non esportare il file nella stessa cartella dei file da leggere.</div>
+            <div class="export-btn">
+                <button class="export-button" on:click={exportData}><span class="material-symbols-outlined">
+                    download
+                    </span>Esporta CSV</button>
+            </div>
         </div>
     </div>
 {:else}
@@ -142,10 +152,29 @@
         align-items: center;
     }
 
+    .close-wr {
+        margin-top: 1rem;
+        height: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .close-cont {
+        width: 95vw;
+        display: flex;
+        align-items: center;
+    }
+
     .table-container {
         display: flex;
         justify-content: center;
-        margin: 2rem 0 1rem 0;
+        margin: .5rem 0 1rem 0;
+    }
+
+    .export-cont {
+        display: flex;
+        justify-content: center;
     }
 
     .export-btn {
@@ -156,6 +185,7 @@
     }
 
     .export {
+        width: 95vw;
         display: flex;
         justify-content: center;
         margin: 1rem 0 1rem 0;
@@ -165,6 +195,14 @@
         display: flex;
         align-items: center;
         padding-right: 10px;
+    }
+
+    .warning {
+        color: rgb(44, 44, 44);
+        font-size: .9rem;
+        border-radius: 8px;
+        background-color: rgb(255, 217, 47);
+        padding: .3rem;
     }
 
     img {
@@ -201,6 +239,8 @@
     table {
         border-collapse: collapse;
         width: 95vw;
+        border-radius: 30px;
+        border: 1px white solid;
     }
 
     td, th {
