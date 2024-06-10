@@ -22,6 +22,10 @@ export function Greet(arg1) {
   return window['go']['main']['App']['Greet'](arg1);
 }
 
+export function InfoWindow(arg1) {
+  return window['go']['main']['App']['InfoWindow'](arg1);
+}
+
 export function SelectExport() {
   return window['go']['main']['App']['SelectExport']();
 }

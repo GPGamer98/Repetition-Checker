@@ -12,6 +12,8 @@ export function GetCurrentVersion():Promise<string>;
 
 export function Greet(arg1:string):Promise<string>;
 
+export function InfoWindow(arg1:string):Promise<void>;
+
 export function SelectExport():Promise<string>;
 
 export function SelectFile():Promise<string>;

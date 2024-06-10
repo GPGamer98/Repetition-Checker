@@ -175,3 +175,8 @@ func (a *App) UpdateCheckUI() {
 func (a *App) GetCurrentVersion() string {
 	return update.Version
 }
+
+func (a *App) InfoWindow(info string) {
+	opts := runtime.MessageDialogOptions{Title: "Perché questo?", Message: "Ciò viene richiesto perché esportando il file nella stessa cartella dove vengono letti i documenti CSV da analizzare, anche il file salvato verrà letto e quindi provocherà dei dati falsi"}
+	runtime.MessageDialog(a.ctx, opts)
+}

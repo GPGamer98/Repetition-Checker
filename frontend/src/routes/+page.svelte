@@ -1,8 +1,5 @@
 <script lang="ts">
-    import { SelectFile } from "$lib/wailsjs/go/main/App"
-    import { AnalyzeCSVFiles } from "$lib/wailsjs/go/main/App"
-    import { ExportDataToCSV } from "$lib/wailsjs/go/main/App";
-    import { SelectExport } from "$lib/wailsjs/go/main/App"
+    import { SelectFile, AnalyzeCSVFiles, ExportDataToCSV, SelectExport, InfoWindow } from "$lib/wailsjs/go/main/App"
 
     import logo from "$lib/assets/logo.png"
 
@@ -42,6 +39,10 @@
             ExportDataToCSV(countResult, result)
         })
     }
+
+    function callInfo() {
+        InfoWindow("export")
+    }
 </script>
 
 <div class="logo">
@@ -77,7 +78,8 @@
     </div>
     <div class="export-cont">
         <div class="export">
-            <div class="warning">Attenzione! Non esportare il file nella stessa cartella dei file da leggere.</div>
+            <div class="warning">Attenzione! Non esportare il file nella stessa cartella dei file da leggere.<button class="material-symbols-outlined info" on:click={callInfo}>info</button>
+            </div>
             <div class="export-btn">
                 <button class="export-button" on:click={exportData}><span class="material-symbols-outlined">
                     download
@@ -203,6 +205,17 @@
         border-radius: 8px;
         background-color: rgb(255, 217, 47);
         padding: .3rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .info {
+        color: black;
+        border: none;
+    }
+
+    .info:hover {
+        background-color: transparent;
     }
 
     img {
