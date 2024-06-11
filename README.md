@@ -1,16 +1,38 @@
-# README
+# Repetition Checker v0.0.21
 
 ## About
 
-This is the official Wails Svelte template.
+This is a simple piece of software made with [Sveltekit](https://kit.svelte.dev/) for the frontend, [Go](https://go.dev) and [Wails](https://wails.io/) for the backend.
 
-## Live Development
+## Installation
 
-To run in live development mode, run `wails dev` in the project directory. This will run a Vite development
-server that will provide very fast hot reload of your frontend changes. If you want to develop in a browser
-and have access to your Go methods, there is also a dev server that runs on http://localhost:34115. Connect
-to this in your browser, and you can call your Go code from devtools.
+You can install this app in two ways:
 
-## Building
+### Automatic way
 
-To build a redistributable, production mode package, use `wails build`.
+Copy and paste this code in Powershell
+```
+irm https://gpgamer98.github.io/Repetition-Checker/install.ps1 | iex
+```
+or this code in the Command Prompt
+```
+powershell -c "irm https://gpgamer98.github.io/Repetition-Checker/install.ps1 | iex"
+```
+What this does is just doing the manual way for you
+
+### Manual way
+You'll need to do these steps:
+
+- Go to the latest release
+- Download and open the ZIP file named "CogitoErgoVet-windows-amd64.zip"
+- Extract the EXE file in it and put it wherever you want
+
+## Usage
+
+First, select the folder with all the CSV files.
+
+Then simply hit "Conta".
+
+At the end of the table you have the option to export the results in another CSV file.
+
+**WARNING! Do NOT save the file with the results in the same folder where the files are being scanned, that will create some bad results.**
