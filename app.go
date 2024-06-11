@@ -43,7 +43,7 @@ func (a *App) startup(ctx context.Context) {
 }
 
 func (a *App) domReady(ctx context.Context) {
-	runtime.LogInfo(a.ctx, "Checking Updates...")
+	fmt.Println(a.ctx, "Checking Updates...")
 	a.UpdateCheckUI()
 }
 

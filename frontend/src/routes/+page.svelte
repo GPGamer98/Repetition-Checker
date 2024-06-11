@@ -83,14 +83,13 @@
             </tr>
 
             {#each countResult as element}
-                <tr>
-                    {#if element.Count >= filter}
-                        <td>{element.Entry}</td>
+                {#if element.Count >= filter}
+                    <tr>
+                        <td>{countResult.indexOf(element) + 1}: {element.Entry}</td>
                         <td>{element.Count}</td>
-                    {/if}
-                </tr>
+                    </tr>
+                {/if}
             {/each}
-
         </table>
     </div>
     <div class="export-cont">
@@ -298,7 +297,7 @@
     td, th {
         border: 1px white solid;
         text-align: left;
-        padding: 8px;
+        padding: 12px;
     }
 
     span {
