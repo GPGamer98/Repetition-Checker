@@ -11,6 +11,7 @@
     let file: string = ""
     let counted = false
     let countResult: EntryCount[];
+    let filter = 0
 
     let fileName: string = ""
     
@@ -27,7 +28,7 @@
                 if (countResult) {
                     counted = true
                 }
-                console.log(countResult); // Or further processing/display logic
+                console.log(countResult.length + 1); // Or further processing/display logic
             } catch (error) {
                 console.error("Error:", error);
             }
@@ -58,22 +59,38 @@
 </div>
 
 <div class="count-div"><button class="count" on:click={analyze}>Conta</button></div>
+
 {#if counted}
-    <div class="close-wr">
-        <div class="close-cont"><button class="close-btn" on:click={() => counted = false}>Cancella</button></div>
+    <div class="top-wr">
+        <div class="top-cont">
+                    <button class="close-btn" on:click={() => {counted = false; countResult = []}}>Cancella</button>
+                    <div class="filter">
+                        <span class="material-symbols-outlined">
+                            filter_alt
+                        </span>
+                        Maggiore o uguale a: 
+                        <input type="number" name="filter" id="filter-inp" class="filter-inp" bind:value={filter}>
+                    </div>
+                    Totale: {countResult.length + 1}
+        </div>
     </div>
+
     <div class="table-container">
         <table>
             <tr>
                 <th>Email</th>
                 <th>N° volte</th>
             </tr>
+
             {#each countResult as element}
                 <tr>
-                    <td>{element.Entry}</td>
-                    <td>{element.Count}</td>
+                    {#if element.Count >= filter}
+                        <td>{element.Entry}</td>
+                        <td>{element.Count}</td>
+                    {/if}
                 </tr>
             {/each}
+
         </table>
     </div>
     <div class="export-cont">
@@ -102,6 +119,17 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
     
+    @keyframes zoom {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.2);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
 
     :root {
         font-family: "Open Sans", sans-serif;
@@ -154,18 +182,28 @@
         align-items: center;
     }
 
-    .close-wr {
+    .top-cont {
         margin-top: 1rem;
         height: 3rem;
+        width: 95vw;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
     }
 
-    .close-cont {
-        width: 95vw;
+    .top-wr {
+        margin-top: 1.2rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .filter {
         display: flex;
         align-items: center;
+    }
+
+    .filter-inp {
+        width: 5rem;
     }
 
     .table-container {
@@ -190,7 +228,7 @@
         width: 95vw;
         display: flex;
         justify-content: center;
-        margin: 1rem 0 1rem 0;
+        margin: .1rem 0 1rem 0;
     }
 
     .export-button {
@@ -204,7 +242,7 @@
         font-size: .9rem;
         border-radius: 8px;
         background-color: rgb(255, 217, 47);
-        padding: .3rem;
+        padding: .7rem;
         display: flex;
         align-items: center;
     }
@@ -212,6 +250,7 @@
     .info {
         color: black;
         border: none;
+        animation: zoom 1s ease-in-out infinite;
     }
 
     .info:hover {
