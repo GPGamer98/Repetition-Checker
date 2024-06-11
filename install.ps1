@@ -10,7 +10,7 @@ Expand-Archive -LiteralPath "$($env:TEMP)\rep-checker\app.zip" -DestinationPath 
 
 Remove-Item -Path "$($env:TEMP)\rep-checker" -Recurse
 
-Write-Host "Installation completed. The app is on the desktop" -ForegroundColor Green
+Write-Host "Installation completed. The app should be on the desktop" -ForegroundColor Green
 
 Write-Host -NoNewLine 'Press any key to close...';
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');

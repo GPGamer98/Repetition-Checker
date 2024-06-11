@@ -18,10 +18,6 @@ export function GetCurrentVersion() {
   return window['go']['main']['App']['GetCurrentVersion']();
 }
 
-export function Greet(arg1) {
-  return window['go']['main']['App']['Greet'](arg1);
-}
-
 export function InfoWindow(arg1) {
   return window['go']['main']['App']['InfoWindow'](arg1);
 }

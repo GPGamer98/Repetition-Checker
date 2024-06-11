@@ -10,8 +10,6 @@ export function ExportDataToCSV(arg1:Array<main.EntryCount>,arg2:string):Promise
 
 export function GetCurrentVersion():Promise<string>;
 
-export function Greet(arg1:string):Promise<string>;
-
 export function InfoWindow(arg1:string):Promise<void>;
 
 export function SelectExport():Promise<string>;

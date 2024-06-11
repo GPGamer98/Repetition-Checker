@@ -19,7 +19,7 @@ func main() {
 
 	// AppMenu := menu.AppMenu()
 	// AboutMenu := AppMenu.SubMenu.AddSubmenu("Informazioni")
-	// AboutMenu.AddText("Informazioni", keys.CmdOrCtrl("i"), )
+	// AboutMenu.AddText("Informazioni", keys.CmdOrCtrl("i"), Info)
 
 	// Create application with options
 	err := wails.Run(&options.App{

@@ -44,6 +44,8 @@
     function callInfo() {
         InfoWindow("export")
     }
+
+
 </script>
 
 <div class="logo">
@@ -108,12 +110,6 @@
         <h2>Seleziona una cartella e clicca Conta!</h2>
     </div>
 {/if}
-
-<!-- <footer>
-    <div class="footer-div">
-        <p>Made with ❤️ by Giacomo for Cogito Ergo Vet</p>
-    </div>
-</footer> -->
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');

@@ -47,11 +47,6 @@ func (a *App) domReady(ctx context.Context) {
 	a.UpdateCheckUI()
 }
 
-// Greet returns a greeting for the given name
-func (a *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
-}
-
 func (a *App) SelectFile() (string, error) {
 		file, err := runtime.OpenDirectoryDialog(a.ctx, runtime.OpenDialogOptions{Title: "Seleziona il file CSV", Filters: []runtime.FileFilter{{DisplayName: "File CSV (*.csv)", Pattern: "*.csv"}}})
 		return file, err
