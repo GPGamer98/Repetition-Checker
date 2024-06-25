@@ -27,9 +27,15 @@ What this does is just doing the manual way for you
 ### Manual way
 You'll need to do these steps:
 
+#### Windows
 - Go to the latest release
 - Download and open the ZIP file named "CogitoErgoVet-windows-amd64.zip"
 - Extract the EXE file in it and put it wherever you want
+
+#### Linux
+- Go to the latest release
+- Download and open the ZIP file named "CogitoErgoVet-linux-amd64.zip"
+- Extract the file in it and put it wherever you want
 
 ## Usage
 
