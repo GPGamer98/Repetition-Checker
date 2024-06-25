@@ -31,12 +31,14 @@ func DoSelfUpdate() bool {
 func CheckUpdate() (bool, string, string) {
 	latest, found, err := selfupdate.DetectLatest("GPGamer98/Repetition-Checker")
 	if err != nil {
-		// log.Println("Error occurred while detecting version:", err)
+		log.Println("Error occurred while detecting version:", err)
 		return false, "", ""
 	}
 
 	v := semver.MustParse(Version)
 	if !found || latest.Version.LTE(v) {
+		log.Println(found)
+		log.Println(latest.Version)
 		// log.Println("Current version is the latest")
 		return false, "", v.String()
 	}

@@ -164,6 +164,8 @@ func (a *App) UpdateCheckUI() {
 				runtime.MessageDialog(a.ctx, dialogOpts)
 			}
 		}
+	} else {
+		fmt.Println("no")
 	}
 }
 
