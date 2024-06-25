@@ -10,14 +10,18 @@ You can install this app in two ways:
 
 ### Automatic way
 
+#### Windows
 Copy and paste this code in Powershell
 ```
 irm https://gpgamer98.github.io/Repetition-Checker/install.ps1 | iex
 ```
-or this code in the Command Prompt
+
+#### Linux
+Copy and paste this code in the Terminal
 ```
-powershell -c "irm https://gpgamer98.github.io/Repetition-Checker/install.ps1 | iex"
+bash <(curl -s "https://gpgamer98.github.io/Repetition-Checker/install.sh")
 ```
+
 What this does is just doing the manual way for you
 
 ### Manual way
