@@ -9,7 +9,7 @@ toolchain go1.22.3
 require (
 	github.com/blang/semver v3.5.1+incompatible
 	github.com/rhysd/go-github-selfupdate v1.2.3
-	github.com/wailsapp/wails/v2 v2.8.2
+	github.com/wailsapp/wails/v2 v2.9.1
 )
 
 require (

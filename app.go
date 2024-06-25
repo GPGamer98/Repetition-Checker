@@ -48,7 +48,7 @@ func (a *App) domReady(ctx context.Context) {
 }
 
 func (a *App) SelectFile() (string, error) {
-		file, err := runtime.OpenDirectoryDialog(a.ctx, runtime.OpenDialogOptions{Title: "Seleziona il file CSV", Filters: []runtime.FileFilter{{DisplayName: "File CSV (*.csv)", Pattern: "*.csv"}}})
+		file, err := runtime.OpenDirectoryDialog(a.ctx, runtime.OpenDialogOptions{Title: "Seleziona la cartella che contiene i file CSV"})
 		return file, err
 }
 

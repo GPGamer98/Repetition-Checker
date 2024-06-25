@@ -12,6 +12,7 @@
     let counted = false
     let countResult: EntryCount[];
     let filter = 0
+    let amount = 0
 
     let fileName: string = ""
     
@@ -27,6 +28,7 @@
                 countResult = await AnalyzeCSVFiles(file);
                 if (countResult) {
                     counted = true
+                    amount = countResult.length
                 }
                 console.log(countResult.length + 1); // Or further processing/display logic
             } catch (error) {
@@ -45,7 +47,14 @@
         InfoWindow("export")
     }
 
-
+    function total() {
+        amount = 0
+        countResult.forEach(element => {
+            if (element.Count >= filter) {
+                amount += 1
+            }
+        });
+    }
 </script>
 
 <div class="logo">
@@ -71,14 +80,27 @@
                             filter_alt
                         </span>
                         Maggiore o uguale a: 
-                        <input type="number" name="filter" id="filter-inp" class="filter-inp" bind:value={filter}>
+                        <input type="number" name="filter" id="filter-inp" class="filter-inp" bind:value={filter} on:input={total}>
                     </div>
-                    Totale: {countResult.length + 1}
+                    Totale: {amount}
         </div>
     </div>
 
     <div class="table-container">
-        <table>
+        <table class="index" id="index-table">
+            <tr>
+                <th class="index" id="index-h">e</th>
+            </tr>
+
+            {#each countResult as element}
+                {#if element.Count >= filter}
+                    <tr class="index" id="index-tr">
+                        <td class="index" id="index">{countResult.indexOf(element) + 1}</td>
+                    </tr>
+                {/if}
+            {/each}
+        </table>
+        <table id="data">
             <tr>
                 <th>Email</th>
                 <th>N° volte</th>
@@ -87,7 +109,7 @@
             {#each countResult as element}
                 {#if element.Count >= filter}
                     <tr>
-                        <td>{countResult.indexOf(element) + 1}: {element.Entry}</td>
+                        <td>{element.Entry}</td>
                         <td>{element.Count}</td>
                     </tr>
                 {/if}
@@ -159,16 +181,18 @@
     .count-div {
         display: flex;
         justify-content: center;
+        background-color: transparent;
     }
 
     .count {
         font-size: 2rem;
         padding: 1rem;
+        background-color: transparent;
     }
 
-    .count:hover {
+    /* .count:hover {
         filter: drop-shadow(0 0 16px rgb(185, 185, 185));
-    }
+    } */
 
     .waiting {
         display: flex;
@@ -205,6 +229,30 @@
         display: flex;
         justify-content: center;
         margin: .5rem 0 1rem 0;
+    }
+
+    .index {
+        border: none;
+    }
+
+    #index-table {
+        width: 2rem;
+    }
+
+    #index-h {
+        color: transparent;
+    }
+
+    #index {
+        /* border: none; */
+        display: flex;
+        align-items: center;
+    }
+
+    #index-tr {
+        padding: 0;
+        display: flex;
+        align-items: center;
     }
 
     .export-cont {
