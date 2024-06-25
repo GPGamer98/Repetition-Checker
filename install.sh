@@ -1,6 +1,7 @@
 #!/bin/bash
 
 YELLOW='\033[0;33m'
+RED='\033[0;31m'
 GREEN='\033[0;32m'
 R='\033[0m'
 
@@ -26,7 +27,7 @@ elif [[ $lang == "2" ]]; then
     mv /tmp/rep-checker/CogitoErgoVet /home/$(whoami)/Scrivania/
     chmod +x "/home/$(whoami)/Scrivania/CogitoErgoVet"
 else
-    echo "ERROR! Please select a valid language."
+    echo -e "${RED}ERROR! Please select a valid language.${R}"
     echo "Press any key to close..."
     read
     exit 1
