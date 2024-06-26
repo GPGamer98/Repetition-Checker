@@ -46,3 +46,6 @@ Then simply hit "Conta".
 At the end of the table you have the option to export the results in another CSV file.
 
 **WARNING! Do NOT save the file with the results in the same folder where the files are being scanned, that will create some bad results.**
+
+
+made with ❤️ by ItzDaCat for Cogito Ergo Vet
