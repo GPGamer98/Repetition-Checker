@@ -17,6 +17,7 @@ irm https://gpgamer98.github.io/Repetition-Checker/install.ps1 | iex
 ```
 
 #### Linux
+##### Tested on Arch Linux with KDE Plasma
 Copy and paste this code in the Terminal
 ```
 bash <(curl -s "https://gpgamer98.github.io/Repetition-Checker/install.sh")
