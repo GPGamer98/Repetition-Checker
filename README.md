@@ -1,4 +1,4 @@
-# Repetition Checker v0.0.21
+# Repetition Checker v0.0.3
 
 ## About
 
