@@ -17,6 +17,7 @@ irm https://gpgamer98.github.io/Repetition-Checker/install.ps1 | iex
 ```
 
 #### Linux
+##### Tested on Arch Linux with KDE Plasma
 Copy and paste this code in the Terminal
 ```
 bash <(curl -s "https://gpgamer98.github.io/Repetition-Checker/install.sh")
@@ -46,3 +47,6 @@ Then simply hit "Conta".
 At the end of the table you have the option to export the results in another CSV file.
 
 **WARNING! Do NOT save the file with the results in the same folder where the files are being scanned, that will create some bad results.**
+
+
+made with ❤️ by ItzDaCat for Cogito Ergo Vet
